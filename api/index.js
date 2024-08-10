@@ -2,6 +2,9 @@ import express from "express";
 import dotenv from 'dotenv';
 import mongoose from "mongoose";
 
+import authRoutes from './routes/auth.routes.js';
+import productRoutes from './routes/product.routes.js';
+
 
 dotenv.config();
 
@@ -26,6 +29,9 @@ app.use(express.json());
 app.listen(5000, () => {
     console.log("Server is running on port 5000");
 });
+
+app.use('/api/auth', authRoutes);
+app.use('/api/product', productRoutes);
 
 
 app.use(
