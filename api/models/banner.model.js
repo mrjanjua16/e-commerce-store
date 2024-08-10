@@ -1,7 +1,11 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
 const bannerSchema = new mongoose.Schema({
     title: {
+         type: String, 
+         required: true 
+        },
+    description: {
          type: String, 
          required: true 
         },
@@ -9,15 +13,14 @@ const bannerSchema = new mongoose.Schema({
          type: String, 
          required: true 
         },
-    link: {
-         type: String 
-        },
     active: {
          type: Boolean, 
-         default: true },
+         default: true 
+        },
     },
     {timestamp: true}
 );
 
 const Banner = mongoose.model('Banner', bannerSchema);
-module.exports = Banner;
+
+export default Banner;

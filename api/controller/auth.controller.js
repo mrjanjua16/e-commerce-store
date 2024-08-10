@@ -7,7 +7,7 @@ import User from '../models/user.model.js';
 import { errorHandler } from '../utils/error.js';
 
 export const register = async (req, res, next) => {
-    const {username, email, password} = req.body;
+    const { username, email, password, interestCategory } = req.body;
 
     if (!username || !email || !password) {
         return next(errorHandler(400, 'Username, email and password are required to register!'));
@@ -16,22 +16,25 @@ export const register = async (req, res, next) => {
         return next(errorHandler(400, 'Username and password must be at least 3 and 6 characters long!'));
     }
 
-    const existingEmail = await User.findOne({ email });
-    if (existingEmail) {
-        return next(errorHandler(400, 'Email already in use, please login!'));
-    }
-    const existingUsername = await User.findOne({ username });
 
-    if (existingUsername) {
-        return next(errorHandler(400, 'Username already in use!'));
-    }
     try {
+        const existingEmail = await User.findOne({ email });
+        if (existingEmail) {
+            return next(errorHandler(400, 'Email already in use, please login!'));
+        }
+        const existingUsername = await User.findOne({ username });
+
+        if (existingUsername) {
+            return next(errorHandler(400, 'Username already in use!'));
+        }
+
         const hashedPw = await bcryptjs.hash(password, 10);
 
         const newUser = await User.create({
-            username, 
-            email, 
-            password: hashedPw
+            username,
+            email,
+            password: hashedPw,
+            interestCategory
         });
 
         await newUser.save();
@@ -40,7 +43,7 @@ export const register = async (req, res, next) => {
             message: 'User registered successfully!',
             user: newUser
         });
-        
+
     } catch (error) {
         next(error);
     }
@@ -72,12 +75,12 @@ export const login = async (req, res, next) => {
         const { password: userPw, ...rest } = validUser._doc;
 
         res
-        .status(200)
-        .cookie('access_token', token, {
-            httpOnly: true,
-        })
-        .json(rest);
-        
+            .status(200)
+            .cookie('access_token', token, {
+                httpOnly: true,
+            })
+            .json(rest);
+
     } catch (error) {
         next(error);
     }
@@ -94,7 +97,7 @@ export const setAdmin = async (req, res, next) => {
             return next(errorHandler(400, 'User is already an admin!'));
         }
 
-        await User.findByIdAndUpdate(id, { $set:{ isAdmin: true } });
+        await User.findByIdAndUpdate(id, { $set: { isAdmin: true } });
 
         res.status(200).json({
             message: 'User updated to admin successfully!'

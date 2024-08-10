@@ -1,29 +1,30 @@
 import Product from '../models/product.model.js';
 import { errorHandler } from '../utils/error.js';
+import User from '../models/user.model.js';
 
 export const createProduct = async (req, res, next) => {
     const {
-         name, 
-         description, 
-         price, 
-         category, 
-         brand, 
-         stock, 
-         images, 
-         isFeatured, 
-         isActive 
+        name,
+        description,
+        price,
+        category,
+        brand,
+        stock,
+        images,
+        isFeatured,
+        isActive
     } = req.body;
 
     const product = new Product({
-        name, 
-        description, 
-        price, 
-        category, 
-        brand, 
-        stock, 
-        images, 
-        isFeatured, 
-        isActive 
+        name,
+        description,
+        price,
+        category,
+        brand,
+        stock,
+        images,
+        isFeatured,
+        isActive
     });
 
     try {
@@ -32,23 +33,23 @@ export const createProduct = async (req, res, next) => {
         res.status(201).json({
             message: 'Product created successfully',
             product
-        }); 
+        });
     } catch (error) {
         next(error);
-    }   
+    }
 }
 
 export const getProducts = async (req, res, next) => {
     const {
-         keyword, 
-         price, 
-         category, 
-         brand, 
-         stock, 
-         isFeatured, 
-         isActive 
-    } = req.query;
-    
+        keyword,
+        price,
+        category,
+        brand,
+        stock,
+        isFeatured,
+        isActive
+    } = req.body;
+
     try {
         const query = {};
 
@@ -70,6 +71,49 @@ export const getProducts = async (req, res, next) => {
             return res.status(404).json({ message: 'No products found' });
         } else {
             res.status(200).json(products);
+        }
+
+    } catch (error) {
+        next(errorHandler(error.code || 500, error.message || 'Internal server error'));
+    }
+}
+
+export const newArrival = async (req, res, next) => {
+    try {
+        const products = await Product.find().sort({ createdAt: -1 }).limit(3);
+        if (!products) {
+            return res.status(404).json({ message: 'No products found' });
+        }
+        res.status(200).json(products);
+    } catch (error) {
+        next(errorHandler(error.code || 500, error.message || 'Internal server error'));
+    }
+}
+
+export const getSelectedProducts = async (req, res, next) => {
+    const { userId } = req.params;
+
+    try {
+        // if no userid is provided, return all latest products
+        if (!userId) {
+            const latestProducts = await Product.find().sort({ createdAt: -1 }).limit(5);
+            return res.json(latestProducts);
+        }
+
+        // if userid is provided, return products based on user's interest categories
+        const user = await User.findById(userId);
+
+        if (user) {
+            const { interestCategory } = user;
+
+            // if userid is provided and interest is null, return all latest products
+            if (!interestCategory || interestCategory.length === 0) {
+                const latestProducts = await Product.find().sort({ createdAt: -1 }).limit(5);
+                return res.json(latestProducts);
+            }
+
+            const products = await Product.find({ category: { $in: interestCategory } });
+            return res.json(products);
         }
 
     } catch (error) {

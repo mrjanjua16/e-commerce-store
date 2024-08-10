@@ -24,6 +24,11 @@ const userSchema = new mongoose.Schema(
             type: Boolean,
             default: false,
         },
+        interestCategory: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Category',
+            default: null,
+        },
     }, {timestamps: true}
 )
 
