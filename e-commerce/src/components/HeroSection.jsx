@@ -4,6 +4,7 @@ import Navbar from './Navbar';
 import backgroundImage from '../assets/Slider-img.png';
 
 export default function HeroSection() {
+
   return (
     <div className="relative bg-cover bg-center h-screen" style={{ backgroundImage: `url(${backgroundImage})` }}>
       <Navbar />
