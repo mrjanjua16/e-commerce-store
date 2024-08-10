@@ -1,29 +1,34 @@
 import React from 'react';
 
+import newArrivalImage1 from '../assets/New-product-1.png';
+import newArrivalImage2 from '../assets/new-product-2.png';
+import newArrivalImage3 from '../assets/new-product-3.png';
+import newArrivalImage4 from '../assets/new-product-4.png';
+
 const products = [
   {
     id: 1,
     name: 'Louis Vuitton Bag',
     price: '$285.00',
-    imageUrl: 'https://via.placeholder.com/300x400', // Replace with the actual image URL
+    imageUrl: newArrivalImage1,
   },
   {
     id: 2,
     name: 'Louis Vuitton Bag',
     price: '$285.00',
-    imageUrl: 'https://via.placeholder.com/300x400', // Replace with the actual image URL
+    imageUrl: newArrivalImage2,
   },
   {
     id: 3,
     name: 'Louis Vuitton Bag',
     price: '$285.00',
-    imageUrl: 'https://via.placeholder.com/300x400', // Replace with the actual image URL
+    imageUrl: newArrivalImage3,
   },
   {
     id: 4,
     name: 'Louis Vuitton Bag',
     price: '$285.00',
-    imageUrl: 'https://via.placeholder.com/300x400', // Replace with the actual image URL
+    imageUrl: newArrivalImage4,
   },
 ];
 

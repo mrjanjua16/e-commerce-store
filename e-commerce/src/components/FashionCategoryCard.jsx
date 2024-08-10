@@ -1,18 +1,20 @@
 import React from 'react';
 
-const FashionCategoryCard = ({ image, title }) => {
+const FashionCategoryCard = ({ image, title, textPosition }) => {
   return (
-    <div className="relative flex items-center justify-between bg-gray-50 p-6 rounded-lg shadow-lg max-w-md md:max-w-2xl lg:max-w-none">
+    <div className="relative flex items-center justify-center bg-gray-50 p-4 rounded-lg shadow-lg max-w-sm md:max-w-md lg:max-w-lg">
       <img
         src={image}
         alt={title}
-        className="w-1/2 h-auto rounded-lg object-cover"
+        className="w-full h-auto rounded-lg object-cover"
       />
-      <div className="ml-6">
-        <h2 className="text-xl md:text-2xl font-semibold text-gray-800">
+      <div
+        className={`absolute ${textPosition === 'left' ? 'top-1/2 left-4 transform -translate-y-1/2' : 'top-1/2 right-4 transform -translate-y-1/2'} bg-white bg-opacity-0 p-4 rounded-lg shadow-lg w-40 text-center`} 
+      >
+        <h2 className="text-sm md:text-base font-semibold text-gray-800 whitespace-pre-line"> 
           {title}
         </h2>
-        <button className="flex items-center mt-4 text-blue-600 font-medium hover:underline">
+        <button className="flex items-center mt-2 text-blue-600 font-medium hover:underline mx-auto">
           <span>VIEW ALL</span>
           <svg
             xmlns="http://www.w3.org/2000/svg"

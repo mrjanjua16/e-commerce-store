@@ -1,11 +1,16 @@
 import React from 'react';
 import ProductCard from './ProductCard';
 
+import productImage1 from '../assets/product-1.png';
+import productImage2 from '../assets/product-2.png';
+import productImage3 from '../assets/product-3.png';
+import productImage4 from '../assets/product-4.png';
+
 const products = [
-  { id: 1, name: 'Backpack', price: '285.00', image: 'https://source.unsplash.com/600x400/?backpack' },
-  { id: 2, name: 'Digital Watch', price: '285.00', image: 'https://source.unsplash.com/600x400/?watch' },
-  { id: 3, name: 'Brown Bag', price: '285.00', image: 'https://source.unsplash.com/600x400/?bag' },
-  { id: 4, name: 'Sunglasses', price: '285.00', image: 'https://source.unsplash.com/600x400/?sunglasses' },
+  { id: 1, name: 'Backpack', price: '285.00', image: productImage1 },
+  { id: 2, name: 'Digital Watch', price: '285.00', image: productImage2 },
+  { id: 3, name: 'Brown Bag', price: '285.00', image: productImage3 },
+  { id: 4, name: 'Sunglasses', price: '285.00', image: productImage4 },
 ];
 
 const ProductGrid = () => {
