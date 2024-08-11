@@ -72,7 +72,7 @@ export default function HeroSection() {
           </svg>
         </Link>
         {/* Navigation Buttons */}
-        <div className="absolute right-2 bottom-12 md:right-0 md:top-1/2 md:transform md:-translate-y-1/2 flex flex-col space-y-2 md:space-y-0 md:space-x-4 md:flex-row">
+        <div className="absolute right-2 bottom-16 md:right-0 md:bottom-12 md:top-4/5 md:transform md:-translate-y-1/2 flex flex-col space-y-2 md:space-y-0 md:space-x-4 md:flex-row">
           <NavButton direction="left" onClick={handlePrevClick} />
           <NavButton direction="right" onClick={handleNextClick} />
         </div>
