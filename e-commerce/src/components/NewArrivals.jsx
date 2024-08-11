@@ -1,48 +1,56 @@
-import React from 'react';
+import { useState, useEffect } from 'react';
 
-import newArrivalImage1 from '../assets/New-product-1.png';
-import newArrivalImage2 from '../assets/new-product-2.png';
-import newArrivalImage3 from '../assets/new-product-3.png';
-import newArrivalImage4 from '../assets/new-product-4.png';
-
-const products = [
-  {
-    id: 1,
-    name: 'Louis Vuitton Bag',
-    price: '$285.00',
-    imageUrl: newArrivalImage1,
-  },
-  {
-    id: 2,
-    name: 'Louis Vuitton Bag',
-    price: '$285.00',
-    imageUrl: newArrivalImage2,
-  },
-  {
-    id: 3,
-    name: 'Louis Vuitton Bag',
-    price: '$285.00',
-    imageUrl: newArrivalImage3,
-  },
-  {
-    id: 4,
-    name: 'Louis Vuitton Bag',
-    price: '$285.00',
-    imageUrl: newArrivalImage4,
-  },
-];
+import { Spinner } from 'flowbite-react';
 
 const NewArrivals = () => {
+  const [showMore, setShowMore] = useState(false);
+  const [newArrivals, setNewArrivals] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+
+  useEffect(
+    () => {
+      const fetchNewArrivals = async () => {
+        setLoading(true);
+        try {
+          const newArrivals = await fetch('/api/product/get/new-arrival');
+          if (!newArrivals.ok) {
+            throw new Error('Failed to fetch new arrivals');
+          }
+          const data = await newArrivals.json();
+          setNewArrivals(data);
+          setLoading(false);
+        } catch (error) {
+          setError('Failed to fetch new arrivals');
+          setLoading(false);
+        }
+      }
+
+      fetchNewArrivals();
+    },
+    []
+  );
+
+  if (loading) 
+    return (
+      <div className='flex justify-center items-center h-screen'>
+        <Spinner
+          color='gray'
+          size='xl'
+        />
+      </div>
+    );
+
   return (
     <section className="py-12">
       <div className="container mx-auto text-center">
         <h2 className="text-3xl font-semibold mb-8">New Arrivals</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-          {products.map((product) => (
-            <div key={product.id} className="group">
+          {newArrivals.slice(0, showMore ? newArrivals.length : 4).map((product) => (
+            <div key={product._id} className="group">
               <div className="overflow-hidden">
                 <img
-                  src={product.imageUrl}
+                  src={product.images[0]}
                   alt={product.name}
                   className="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-300"
                 />
@@ -52,8 +60,11 @@ const NewArrivals = () => {
             </div>
           ))}
         </div>
-        <button className="mt-8 px-6 py-2 border border-gray-300 rounded-full text-gray-700 hover:bg-gray-100 transition-colors duration-300">
-          SHOW MORE
+        <button
+          className="mt-8 px-6 py-2 border border-gray-300 rounded-full text-gray-700 hover:bg-gray-100 transition-colors duration-300"
+          onClick={() => setShowMore(!showMore)}
+        >
+          {showMore ? 'SHOW LESS' : 'SHOW MORE'}
         </button>
       </div>
     </section>
