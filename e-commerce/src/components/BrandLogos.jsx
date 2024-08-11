@@ -9,7 +9,7 @@ import logo6 from '../assets/logo6.png';
 
 const BrandLogos = () => {
   return (
-    <div className="flex flex-wrap items-center justify-center py-8 space-x-6 space-y-6 md:space-x-12 md:space-y-0">
+    <div className="flex flex-wrap items-center justify-center py-24 space-x-6 space-y-6 md:space-x-12 md:space-y-0">
       <img src={logo1} alt="Black Style" className="h-8 md:h-12" />
       <img src={logo2} alt="La Modas" className="h-8 md:h-12" />
       <img src={logo3} alt="Molys" className="h-8 md:h-12" />

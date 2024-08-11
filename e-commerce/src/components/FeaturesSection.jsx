@@ -1,6 +1,5 @@
 import React from 'react';
 import FeatureBlock from './FeatureBlock';
-import NavButton from './NavButton';
 
 export default function FeaturesSection() {
   return (
@@ -12,11 +11,6 @@ export default function FeaturesSection() {
           <FeatureBlock title="99% Satisfied Customer" description="Fat new smallness few supposing" />
           <FeatureBlock title="Originality Guaranteed" description="Fat new smallness few supposing" />
         </div>
-      </div>
-      {/* Navigation Buttons */}
-      <div className="absolute right-0 top-1/2 transform -translate-y-1/2 flex flex-col space-y-4 md:space-y-0 md:space-x-4 md:flex-row md:mt-2 md:mr-8">
-        <NavButton direction="left" />
-        <NavButton direction="right" />
       </div>
     </div>
   );

@@ -80,7 +80,7 @@ export const getProducts = async (req, res, next) => {
 
 export const newArrival = async (req, res, next) => {
     try {
-        const products = await Product.find().sort({ createdAt: -1 }).limit(3);
+        const products = await Product.find().sort({ createdAt: -1 }).limit(10);
         if (!products) {
             return res.status(404).json({ message: 'No products found' });
         }
@@ -94,19 +94,17 @@ export const getSelectedProducts = async (req, res, next) => {
     const { userId } = req.params;
 
     try {
-        // if no userid is provided, return all latest products
+
         if (!userId) {
             const latestProducts = await Product.find().sort({ createdAt: -1 }).limit(5);
             return res.json(latestProducts);
         }
 
-        // if userid is provided, return products based on user's interest categories
         const user = await User.findById(userId);
 
         if (user) {
             const { interestCategory } = user;
 
-            // if userid is provided and interest is null, return all latest products
             if (!interestCategory || interestCategory.length === 0) {
                 const latestProducts = await Product.find().sort({ createdAt: -1 }).limit(5);
                 return res.json(latestProducts);

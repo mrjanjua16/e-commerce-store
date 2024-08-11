@@ -1,14 +1,14 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-
 import Navbar from './Navbar';
-
+import NavButton from './NavButton';
 import { Spinner } from 'flowbite-react';
 
 export default function HeroSection() {
-  const [banner, setBanner] = useState(null);
+  const [banners, setBanners] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [currentIndex, setCurrentIndex] = useState(0);
 
   useEffect(() => {
     const fetchBanner = async () => {
@@ -20,7 +20,7 @@ export default function HeroSection() {
         }
         const data = await response.json();
         if (data.success && data.data.length > 0) {
-          setBanner(data.data[0]);
+          setBanners(data.data);
         }
         setLoading(false);
       } catch (error) {
@@ -32,21 +32,41 @@ export default function HeroSection() {
     fetchBanner();
   }, []);
 
-  if (loading) 
+  if (loading)
     return (
       <div className='flex justify-center items-center h-screen'>
-        <Spinner
-          color='gray'
-          size='xl'
-        />
+        <Spinner color='gray' size='xl' />
+      </div>
+    );
+
+  if (error)
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <p className="text-red-500">Failed to load banners. Please try again later.</p>
       </div>
     );
 
 
+    const handlePrevClick = () => {
+      setCurrentIndex((prevIndex) => {
+        const newIndex = prevIndex === 0 ? banners.length - 1 : prevIndex - 1;
+        console.log('Previous Index:', newIndex); // Debugging log
+        return newIndex;
+      });
+    };
+    
+    const handleNextClick = () => {
+      setCurrentIndex((prevIndex) => {
+        const newIndex = prevIndex === banners.length - 1 ? 0 : prevIndex + 1;
+        console.log('Next Index:', newIndex); // Debugging log
+        return newIndex;
+      });
+    };
+
   return (
     <div
       className="relative bg-cover bg-center h-screen"
-      style={{ backgroundImage: `url(${banner ? banner.imageUrl : backgroundImage})` }}
+      style={{ backgroundImage: `url(${banners.length > 0 ? banners[currentIndex].imageUrl : ''})` }}
     >
       <Navbar />
       <div className="relative z-20 container mx-auto h-full flex flex-col justify-center items-start text-white px-4 md:px-10 pt-20 md:pt-24">
@@ -60,6 +80,11 @@ export default function HeroSection() {
             <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
           </svg>
         </Link>
+        {/* Navigation Buttons */}
+        <div className="absolute right-0 top-1/2 transform -translate-y-1/2 flex flex-col space-y-4 md:space-y-0 md:space-x-4 md:flex-row md:mt-[14.25rem] md:mr-8">
+        <NavButton direction="left" onClick={handlePrevClick} />
+        <NavButton direction="right" onClick={handleNextClick} />
+      </div> 
       </div>
     </div>
   );
