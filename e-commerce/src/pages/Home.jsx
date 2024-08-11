@@ -9,11 +9,13 @@ import NewArrivals from '../components/NewArrivals'
 import NewCollections from '../components/NewCollections'
 import BrandLogos from '../components/BrandLogos'
 import Footer from '../components/Footer'
+import Navbar from '../components/Navbar'
 
 export default function Home() {
     return (
         <div>
             <div className="bg-gray-100 font-sans">
+                <Navbar />
                 <HeroSection />
                 <FeaturesSection />
                 <FashionCategory />
