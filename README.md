@@ -2,7 +2,7 @@ E-Commerce Website
 
 This is a simple e-commerce website built using React Tailwind CSS NodeJS Express and MongoDB. 
 
-To run the project, run the following command in api and client folder:
+To run the project, run the following command in api and e-commerce folder:
 
 npm run dev
 
