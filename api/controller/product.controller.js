@@ -74,7 +74,7 @@ export const getProducts = async (req, res, next) => {
         }
 
     } catch (error) {
-        next(errorHandler(error.code || 500, error.message || 'Internal server error'));
+        next(error);
     }
 }
 
@@ -86,7 +86,7 @@ export const newArrival = async (req, res, next) => {
         }
         res.status(200).json(products);
     } catch (error) {
-        next(errorHandler(error.code || 500, error.message || 'Internal server error'));
+        next(error);
     }
 }
 
@@ -115,6 +115,6 @@ export const getSelectedProducts = async (req, res, next) => {
         }
 
     } catch (error) {
-        next(errorHandler(error.code || 500, error.message || 'Internal server error'));
+        next(error);
     }
 }

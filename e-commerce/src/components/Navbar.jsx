@@ -35,11 +35,11 @@ const Navbar = () => {
 
   return (
     <nav className={`absolute w-full z-50 transition-all duration-300 ${navbarSolid ? 'bg-transparent' : 'bg-transparent'} text-white`}>
-      <div className="container mx-auto flex justify-center items-center px-4 py-4"> {/* Changed justify-between to justify-center */}
-        <div className="flex items-center justify-center"> {/* Centered items */}
+      <div className="container mx-auto flex justify-center items-center px-4 py-4">
+        <div className="flex items-center justify-center">
           <button
             type="button"
-            className="md:hidden text-white ml-auto" // Added ml-auto to push the button to the right
+            className="md:hidden text-white ml-auto"
             onClick={toggleNavbar}
           >
             <span className="sr-only">Toggle navigation</span>
@@ -50,13 +50,13 @@ const Navbar = () => {
             </div>
           </button>
           <div className={`md:flex flex-col md:flex-row md:items-center absolute md:static top-full left-0 w-full md:w-auto ${navbarOpen ? 'bg-white bg-opacity-20 backdrop-blur-md' : 'hidden'} md:bg-transparent`}>
-            <ul className="md:flex space-y-2 md:space-y-0 md:space-x-6 text-center mt-4 md:mt-0 justify-center"> {/* Centered items on desktop */}
+            <ul className="md:flex space-y-2 md:space-y-0 md:space-x-6 text-center mt-4 md:mt-0 justify-center">
               <li className="p-4 md:p-0"><Link to="/" className="hover:text-gray-300">Home</Link></li>
               <li className="p-4 md:p-0"><Link to="/" className="hover:text-gray-300">Pages</Link></li>
               <li className="p-4 md:p-0"><Link to="/" className="hover:text-gray-300">Shop</Link></li>
               <li className="p-4 md:p-0"><Link to="/" className="hover:text-gray-300">Blog</Link></li>
               <li className="p-4 md:p-0"><Link to="/" className="hover:text-gray-300">Contact Us</Link></li>
-              <li className="relative p-4 md:p-0">
+              <li className="relative p-4 md:p-0 md:mr-6"> {/* Add margin-right to create space */}
                 <button onClick={toggleLanguageDropdown} className="hover:text-gray-300">
                   ENG
                 </button>
@@ -70,13 +70,13 @@ const Navbar = () => {
                 )}
               </li>
             </ul>
-            <ul className="flex items-center space-x-4 mt-4 md:mt-0 justify-center"> {/* Centered items on desktop */}
+            <ul className="flex items-center space-x-9 mt-4 md:mt-0 justify-center">
               <li className="p-4 md:p-0">
                 <Link to="/" className="hover:text-gray-300">
                   <div className="w-5 h-5 md:w-6 md:h-6 bg-center bg-no-repeat bg-cover" style={{ backgroundImage: `url(${cart})` }}></div>
                 </Link>
               </li>
-              <li className="p-4 md:p-0">
+              <li className="p-4 md:p-0" style={{ marginLeft: '40px', marginRight: '40px' }}>
                 <Link to="/" className="hover:text-gray-300">
                   <div className="w-5 h-5 md:w-6 md:h-6 bg-center bg-no-repeat bg-cover" style={{ backgroundImage: `url(${search})` }}></div>
                 </Link>
