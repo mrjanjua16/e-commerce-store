@@ -94,10 +94,6 @@ Make sure you have installed:
    - Frontend: [http://localhost:3000](http://localhost:3000)
    - Backend: [http://localhost:5000](http://localhost:5000)
 
-## 📸 Screenshots
-
-Add screenshots or GIFs showcasing the app's features and interface here.
-
 ## 🤝 Contribution Guidelines
 
 Contributions are welcome! To contribute:
