@@ -1,7 +1,6 @@
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
-import { FaFacebookF, FaTwitter, FaInstagram, FaYoutube } from 'react-icons/fa';
-
+import { FaFacebookF, FaTwitter, FaInstagram, FaYoutube } from "react-icons/fa";
 
 const Footer = () => {
   return (
@@ -11,7 +10,9 @@ const Footer = () => {
           <div className="w-full md:w-1/4 mb-8 md:mb-0">
             <h5 className="font-bold mb-4">About</h5>
             <p className="text-sm mb-4">
-              We diminution preference thoroughly if. Joy deal pain view much her time. Led young gay would now state. Pronounce we attention admitting.
+              We diminution preference thoroughly if. Joy deal pain view much
+              her time. Led young gay would now state. Pronounce we attention
+              admitting.
             </p>
             <div className="flex justify-center md:justify-start space-x-4">
               <Link to="/" className="text-gray-700 hover:text-gray-900">
@@ -32,22 +33,92 @@ const Footer = () => {
           <div className="w-full md:w-1/4 mb-8 md:mb-0">
             <h5 className="font-bold mb-4">Shopping Online</h5>
             <ul className="space-y-2">
-              <li><Link to="/" className="text-sm text-gray-700 hover:text-gray-900">Order Status</Link></li>
-              <li><Link to="/" className="text-sm text-gray-700 hover:text-gray-900">Shipping & Delivery</Link></li>
-              <li><Link to="/" className="text-sm text-gray-700 hover:text-gray-900">Returns</Link></li>
-              <li><Link to="/" className="text-sm text-gray-700 hover:text-gray-900">Payment Options</Link></li>
-              <li><Link to="/" className="text-sm text-gray-700 hover:text-gray-900">Contact Us</Link></li>
+              <li>
+                <Link
+                  to="/"
+                  className="text-sm text-gray-700 hover:text-gray-900"
+                >
+                  Order Status
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/"
+                  className="text-sm text-gray-700 hover:text-gray-900"
+                >
+                  Shipping & Delivery
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/"
+                  className="text-sm text-gray-700 hover:text-gray-900"
+                >
+                  Returns
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/"
+                  className="text-sm text-gray-700 hover:text-gray-900"
+                >
+                  Payment Options
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/"
+                  className="text-sm text-gray-700 hover:text-gray-900"
+                >
+                  Contact Us
+                </Link>
+              </li>
             </ul>
           </div>
 
           <div className="w-full md:w-1/4 mb-8 md:mb-0">
             <h5 className="font-bold mb-4">Information</h5>
             <ul className="space-y-2">
-              <li><Link to="/" className="text-sm text-gray-700 hover:text-gray-900">Gift Card</Link></li>
-              <li><Link to="/" className="text-sm text-gray-700 hover:text-gray-900">Find a Store</Link></li>
-              <li><Link to="/" className="text-sm text-gray-700 hover:text-gray-900">Newsletter</Link></li>
-              <li><Link to="/" className="text-sm text-gray-700 hover:text-gray-900">Become a Member</Link></li>
-              <li><Link to="/" className="text-sm text-gray-700 hover:text-gray-900">Site Feedback</Link></li>
+              <li>
+                <Link
+                  to="/"
+                  className="text-sm text-gray-700 hover:text-gray-900"
+                >
+                  Gift Card
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/"
+                  className="text-sm text-gray-700 hover:text-gray-900"
+                >
+                  Find a Store
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/"
+                  className="text-sm text-gray-700 hover:text-gray-900"
+                >
+                  Newsletter
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/"
+                  className="text-sm text-gray-700 hover:text-gray-900"
+                >
+                  Become a Member
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/"
+                  className="text-sm text-gray-700 hover:text-gray-900"
+                >
+                  Site Feedback
+                </Link>
+              </li>
             </ul>
           </div>
 
